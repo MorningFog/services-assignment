@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UsersService } from '../users.service';
+import { CountService } from '../count.service';
 
 @Component({
   selector: 'app-active-users',
@@ -11,10 +12,11 @@ export class ActiveUsersComponent implements OnInit {
 
   activeUsers: string[];
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService, private countService: CountService) { }
 
   onSetToInactive(index: number) {
     this.usersService.addToInactive(index);
+    this.countService.addInactiveClicks();
   }
 
   ngOnInit() {
